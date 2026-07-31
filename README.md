@@ -7,7 +7,7 @@ A Retrieval-Augmented Generation (RAG) system that answers questions grounded in
 Standard LLMs hallucinate confidently when they don't actually know something, and have no knowledge of private/personal documents. This project solves both problems by retrieving relevant text *before* generation, so answers are grounded in real, citable source material.
 
 ## Architecture
-```
+```mermaid
 
 flowchart TD
     A[Your Documents<br/>.txt / .md / .pdf] --> B[Chunking<br/>RecursiveCharacterTextSplitter]

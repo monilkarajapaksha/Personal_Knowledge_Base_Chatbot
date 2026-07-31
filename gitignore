@@ -1,0 +1,19 @@
+# Environment / secrets
+.env
+
+# Vector store (generated data — don't version)
+chroma_db/
+
+# Uploaded source documents (personal data — keep private unless you intend to share them)
+data/*
+!data/.gitkeep
+
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+venv/
+.venv/
+
+# OS
+.DS_Store

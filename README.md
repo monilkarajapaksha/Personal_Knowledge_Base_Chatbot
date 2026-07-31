@@ -7,30 +7,28 @@ A Retrieval-Augmented Generation (RAG) system that answers questions grounded in
 Standard LLMs hallucinate confidently when they don't actually know something, and have no knowledge of private/personal documents. This project solves both problems by retrieving relevant text *before* generation, so answers are grounded in real, citable source material.
 
 ## Architecture
-
 ```
-Your Documents (.txt / .md / .pdf)
-        │
-        ▼
-  Chunking (RecursiveCharacterTextSplitter)
-        │
-        ▼
-  Embedding (sentence-transformers, local, free)
-        │
-        ▼
-  Vector Store (ChromaDB)
-        │
-        ▼
-User Query ──► Retriever (top-k similarity search)
-        │
-        ▼
-  Prompt Construction (query + retrieved context)
-        │
-        ▼
-  LLM Generation (Groq — Llama 3.1, free tier)
-        │
-        ▼
-  Answer + Cited Sources
+
+flowchart TD
+    A[Your Documents<br/>.txt / .md / .pdf] --> B[Chunking<br/>RecursiveCharacterTextSplitter]
+    B --> C[Embedding<br/>sentence-transformers - local, free]
+    C --> D[(ChromaDB<br/>Vector Store)]
+
+    E[User Query] --> F[Retriever<br/>top-k similarity search]
+    D --> F
+    F --> G[Prompt Construction<br/>query + retrieved context]
+    G --> H[LLM Generation<br/>Groq - Llama 3.1]
+    H --> I[Answer + Cited Sources]
+
+    style A fill:#EAF0FB,stroke:#2E5EAA,color:#1B2A4A
+    style B fill:#EAF0FB,stroke:#2E5EAA,color:#1B2A4A
+    style C fill:#EAF0FB,stroke:#2E5EAA,color:#1B2A4A
+    style D fill:#FDEBD0,stroke:#B9770E,color:#1B2A4A
+    style E fill:#EAF0FB,stroke:#2E5EAA,color:#1B2A4A
+    style F fill:#EAF0FB,stroke:#2E5EAA,color:#1B2A4A
+    style G fill:#EAF0FB,stroke:#2E5EAA,color:#1B2A4A
+    style H fill:#D5F5E3,stroke:#1E8449,color:#1B2A4A
+    style I fill:#D5F5E3,stroke:#1E8449,color:#1B2A4A
 ```
 
 ## Tech Stack
